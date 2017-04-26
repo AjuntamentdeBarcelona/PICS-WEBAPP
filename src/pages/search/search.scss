@@ -1,0 +1,136 @@
+page-search {
+  // iOS
+  .searchbar-ios {
+    @include breakpoint('tablet') {
+      padding: 0 10%;
+    }
+
+    .searchbar-ios-cancel {
+        padding-left: 8px;
+        display: block;
+    }
+  }
+
+  .ion-md-icon-pic_history, .ion-ios-icon-pic_history {
+    color: #999;
+  }
+
+  .list-ios {
+    @include breakpoint('tablet') {
+      padding-left: 10%;
+    }
+
+    .item-block {
+      @include breakpoint('tablet') {
+        padding-left: 0;
+      }
+
+      &:first-child {
+        border-top: none;
+      }
+      &:last-child {
+        border-bottom: none;
+      }
+
+      .label-ios {
+        font-size: rem(16px);
+      }
+    }
+
+  }
+
+  // MD
+  .searchbar-md {
+    .searchbar-input {
+      box-shadow: none;
+    }
+    .searchbar-md-cancel {
+      font-size: rem(20px);
+      left: 0;
+      display: inline-flex;
+    }
+    .searchbar-search-icon {
+      display: none;
+    }
+  }
+
+  .list-md {
+    padding: rem(16px);
+
+    .item-block {
+      .item-inner {
+        border-bottom: none;
+        margin-left: rem(12px);
+      }
+    }
+  }
+
+}
+
+.md {
+  page-search {
+    @include breakpoint('tablet') {
+      background-color: #eee;
+      display: block;
+      padding-top: rem(66px);
+      overflow: hidden;
+
+      .scroll-content {
+        top: 15px;
+      }
+
+      .content-md {
+        background: none;
+      }
+
+      .searchbar-md {
+        .searchbar-input {
+          padding-left: rem(32px);
+        }
+      }
+
+      button.searchbar-md-cancel {
+        position: fixed;
+        top: 8px;
+        left: 15px;
+        height: 48px;
+        display: block;;
+
+        ion-icon {
+          color: #fff;
+        }
+      }
+
+      ion-header, .list-md {
+        position: relative;
+        max-width: rem(738px);
+        margin: 0 auto rem(24px);
+        background-color: #fff;
+        border-radius: 2px;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+        overflow: hidden;
+      }
+
+      .list-md {
+        margin-top: rem(74px);
+        padding: rem(15px) rem(16px);
+        @include breakpoint('desktop') {
+          transform: translate(7px, 0);
+        }
+      }
+
+      .info-message {
+        background: none;
+        padding-top: rem(74px);
+        @include breakpoint('desktop') {
+          transform: translate(7px, 0);
+        }
+
+        &:before {
+          content: none;
+        }
+      }
+
+    }
+  }
+}

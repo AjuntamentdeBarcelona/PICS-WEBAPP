@@ -1,0 +1,19 @@
+<ion-header>
+
+  <ion-navbar color="{{navbarColor}}">
+    <ion-title>
+      <span *ngIf="content == 'cookies'">{{ 'Cookies information' | translate }}</span>
+      <span *ngIf="content == 'terms'">{{ 'Terms and conditions' | translate }}</span>
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+
+  <div class="long-text">
+    <div class="inner" [innerHTML]="'cookiesHtml' | translate" *ngIf="content == 'cookies'"></div>
+    <div class="inner" [innerHTML]="'termsHtml' | translate" *ngIf="content == 'terms'"></div>
+  </div>
+
+</ion-content>

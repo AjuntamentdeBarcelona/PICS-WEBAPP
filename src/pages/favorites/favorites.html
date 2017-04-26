@@ -1,0 +1,58 @@
+<ion-header>
+
+  <ion-navbar color="{{navbarColor}}">
+    <button ion-button icon-only menuToggle>
+      <ion-icon name="menu" ios="ios-menu-outline"></ion-icon>
+    </button>
+
+    <ion-title>{{ 'Favorites' | translate }}</ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only *ngIf="(pois.length > 0) && isConnected" (click)="changeView()">
+        <ion-icon name="map" ios="ios-map-outline"></ion-icon>
+      </button>
+      <button ion-button icon-only *ngIf="pois.length > 0" (click)="openOptions($event)">
+        <ion-icon name="more" ios="ios-more"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="columns">
+
+  <div class="tablet-inner" *ngIf="pois.length > 0">
+
+    <ion-card *ngFor="let poi of pois" (click)="goToDetail(poi.id)" [ngClass]="{inactive: poi.isFavorite == false}">
+      <span class="distance" *ngIf="(poi.distance) && (poi.distance != '')">{{poi.distance}} km</span>
+      <div class="img-container">
+        <img class="placeholder" src="assets/img-placeholder.png" alt="">
+        <img src="{{poi.image_url}}" alt="" *ngIf="(poi.image_url) && (poi.image_url != '')">
+      </div>
+      <ion-card-content>
+
+        <button class="favButton" ion-button icon-only [clear]="true" (click)="addFavorite($event, poi.id)" *ngIf="poi.isFavorite == false">
+          <ion-icon name="star-outline"></ion-icon>
+        </button>
+        <button class="favButton" ion-button icon-only [clear]="true" (click)="removeFavorite($event, poi.id)" *ngIf="poi.isFavorite == true">
+          <ion-icon name="star"></ion-icon>
+        </button>
+
+        <ion-card-title>{{poi.title}}</ion-card-title>
+        <p class="category" [innerHTML]="poi.categoryLabel"></p>
+        <p>{{poi.excerpt}}</p>
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+
+  <div class="info-message" *ngIf="pois.length == 0">
+    <div class="inner">
+      <ion-icon name="star-outline"></ion-icon>
+      <h1>{{ "No favorites yet" | translate }}</h1>
+      <p>{{ "Save points of interest as favorites tapping the star on each one. You'll have access to them even when no connection is available." | translate }}</p>
+    </div>
+  </div>
+
+</ion-content>

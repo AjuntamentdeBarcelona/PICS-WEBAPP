@@ -1,0 +1,33 @@
+<ion-header>
+
+  <ion-navbar color="{{navbarColor}}">
+
+    <ion-title>{{ 'Language' | translate }}</ion-title>
+
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-list radio-group [(ngModel)]="languageConfig" (ionChange)="changeLanguage()">
+    <ion-item>
+      <ion-label>Català</ion-label>
+      <ion-radio value="ca"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>Castellano</ion-label>
+      <ion-radio value="es"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>English</ion-label>
+      <ion-radio value="en"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>Français</ion-label>
+      <ion-radio value="fr"></ion-radio>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

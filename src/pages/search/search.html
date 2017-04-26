@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-searchbar [(ngModel)]="formData.q" [ngModelOptions]="{standalone: true}" showCancelButton="true" placeholder="{{ 'Search for points of interest' | translate }}" cancelButtonText="{{ 'Cancel' | translate }}" (ionInput)="doSearch($event)" (ionCancel)="searchCancel()" (ionClear)="getSearchHistory()"></ion-searchbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list [hidden]="pois.length == 0">
+    <ion-item ion-item *ngFor="let poi of pois" (click)="goToDetail(poi.id, poi.title)">
+      <ion-icon item-left name="{{poi.icon}}"></ion-icon>
+      <span [innerHTML]="poi.title"></span>
+    </ion-item>
+  </ion-list>
+
+  <div class="info-message" [hidden]="!noResultsMessage">
+    <div class="inner">
+      <ion-icon name="search"></ion-icon>
+      <h1>{{ 'No results' | translate }}</h1>
+      <p>{{ 'Try again with more generic words' | translate }}</p>
+    </div>
+  </div>
+
+</ion-content>

@@ -1,0 +1,253 @@
+.md {
+  page-home-map, page-favorites-map, page-district-map {
+
+    .centerMapButton {
+      position: fixed;
+      bottom: rem(20px);
+      right: rem(20px);
+
+      &.up {
+        @include breakpoint('mobile') {
+          bottom: rem(100px);
+        }
+        @include breakpoint('tablet') {
+          bottom: rem(148px);
+        }
+        @include breakpoint('desktop') {
+          bottom: rem(20px);
+        }
+      }
+    }
+
+    .infowindow {
+      position: fixed;
+      z-index: 1000;
+      cursor: pointer;
+
+      @include breakpoint('mobile') {
+        left: 0;
+        bottom: 0;
+        height: rem(112px);
+        padding-left: rem(20px);
+
+        .img-container {
+          background-color: #f8f8f8;
+          width: rem(112px);
+          height: rem(112px);
+          overflow: hidden;
+          float: right;
+          margin-left: rem(20px);
+          padding-bottom: 0;
+
+          img {
+            width: rem(199px);
+            max-width: none;
+            transform: translate(rem(-32px), 0);
+          }
+        }
+
+        ion-card-content {
+          padding: rem(4px) 0;
+
+          ion-card-title {
+            font-size: rem(16px);
+            line-height: rem(20px);
+            font-weight: 400;
+            margin-bottom: 0;
+          }
+
+          p.excerpt {
+            display: none;
+          }
+        }
+      }
+      @include breakpoint('tablet') {
+        left: 0;
+        bottom: 0;
+        height: rem(160px);
+        max-width: none;
+        padding-left: rem(20px);
+        margin-bottom: 15px;
+
+        .img-container {
+          background-color: #f8f8f8;
+          float: right;
+          margin-left: rem(20px);
+          width: rem(284px);
+          padding-bottom: 22%;
+
+          img {
+            width: rem(284px);
+          }
+        }
+
+        ion-card-content {
+          width: calc(100% - 284px);
+
+          ion-card-title {
+            font-size: rem(24px);
+            line-height: rem(28px);
+            font-weight: 400;
+            margin-bottom: 0;
+          }
+        }
+      }
+      @include breakpoint('desktop') {
+        top: 112px;
+        bottom: 0;
+        width: rem(320px);
+        height: calc(100% - 142px);
+        padding: 0;
+
+        .img-container {
+          background-color: #f8f8f8;
+          float: none;
+          width: rem(320px);
+          height: rem(160px);
+          overflow: hidden;
+          margin-left: 0;
+
+          img {
+            width: rem(320px);
+          }
+        }
+
+        ion-card-content {
+          width: rem(320px);
+        }
+      }
+
+
+    }
+
+  }
+
+  // Show zoom controls of Leaflet map in top right in MD
+  .leaflet-control-container {
+    .leaflet-top.leaflet-left {
+      left: inherit;
+      right: 0;
+
+      .leaflet-control {
+        margin-left: 0;
+        margin-right: 10px;
+      }
+    }
+  }
+}
+
+// iOS
+.ios {
+  page-home-map, page-favorites-map, page-district-map {
+
+    .centerMapButton {
+      position: fixed;
+      bottom: rem(15px);
+      right: rem(15px);
+      background-color: #f8f8f8;
+      box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.5);
+      border-radius: rem(4px);
+      width: rem(40px);
+      height: rem(40px);
+      padding: 0;
+
+      ion-icon {
+        color: color($colors, primary);
+        font-size: rem(30.6px);
+      }
+
+      &.up {
+        @include breakpoint('mobile') {
+          bottom: rem(142px);
+        }
+      }
+    }
+
+    .infowindow {
+      position: fixed;
+      z-index: 1000;
+      cursor: pointer;
+
+      @include breakpoint('mobile') {
+        left: 0;
+        bottom: 0;
+        box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.5);
+        border-radius: rem(13px);
+        width: calc(100% - 30px);
+        height: rem(112px);
+        margin: rem(15px);
+        padding-right: 15px;
+
+        .img-container {
+          background-color: #f8f8f8;
+          width: rem(112px);
+          height: rem(112px);
+          overflow: hidden;
+          float: left;
+          padding-bottom: 0;
+          margin-right: rem(15px);
+
+          img {
+            width: rem(199px);
+            max-width: none;
+            transform: translate(rem(-32px), 0);
+          }
+        }
+
+        ion-card-content {
+          padding: rem(4px) 0 rem(4px) rem(15px);
+
+          ion-card-title {
+            font-size: rem(16px);
+            line-height: rem(20px);
+            font-weight: 400;
+            margin-bottom: 0;
+          }
+
+          p.excerpt {
+            display: none;
+          }
+        }
+      } // end mobile
+
+      @include breakpoint('tablet') {
+        top: 104px;
+        right: 15px;
+        width: rem(280px);
+        max-width: none;
+        padding: 0;
+        box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.5);
+        border-radius: rem(13px);
+
+        .img-container {
+          background-color: #f8f8f8;
+          float: none;
+          width: rem(280px);
+          height: rem(160px);
+          overflow: hidden;
+          margin-left: 0;
+
+          img {
+            width: rem(280px);
+          }
+        }
+
+        ion-card-content {
+          width: rem(280px);
+        }
+      } // end tablet
+
+    } // end infowindow
+
+  }
+}
+
+// Show zoom controls of Leaflet map only in desktop
+.leaflet-control-container {
+  @include breakpoint('mobile') { // includes tablet
+    display: none;
+  }
+  @include breakpoint('desktop') {
+    display: block;
+  }
+}

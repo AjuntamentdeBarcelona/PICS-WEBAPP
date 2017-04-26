@@ -1,0 +1,17 @@
+<ion-content>
+
+  <div class="info-message cookies noheader">
+    <div class="inner">
+      <ion-icon name="icon-pic_info"></ion-icon>
+      <h1>{{ 'Cookies notice' | translate }}</h1>
+      <p>{{ 'cookiesMessage' | translate }}</p>
+      <button ion-button clear color="secondary" (click)="showMoreInfo()">
+        {{ 'More info' | translate }}
+      </button>
+      <button ion-button color="secondary" (click)="acceptCookies()">
+        {{ 'Accept' | translate }}
+      </button>
+    </div>
+  </div>
+
+</ion-content>

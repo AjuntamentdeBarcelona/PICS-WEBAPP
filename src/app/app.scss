@@ -1,0 +1,785 @@
+// http://ionicframework.com/docs/v2/theming/
+
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+
+// Import SASS-REM
+@import "../../node_modules/sass-rem/_rem.scss";
+
+html {
+  @include rem-baseline;
+}
+
+
+// Generic styles
+
+ion-img {
+  contain: none;
+}
+
+ion-toolbar.nopadding {
+  padding: 0;
+}
+
+ion-segment {
+    position: relative;
+    flex: none;
+
+    @include breakpoint('mobile') {
+      justify-content: flex-start;
+      overflow: auto;
+    }
+
+    @include breakpoint('tablet') {
+      display: block;
+      overflow: hidden;
+    }
+
+    &::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+        display: none;
+    }
+
+    ion-segment-button.segment-button, .more-option {
+      padding: rem(8px) 0;
+      color: rgba(0,0,0,.54);
+      transition: color 0.2s ease-out;
+      text-transform: uppercase;
+      white-space: normal;
+      line-height: 1.3em;
+      height: rem(56px);
+      justify-content: center;
+
+      @include breakpoint('mobile') {
+        display: flex;
+        align-content: center;
+        flex-direction: column;
+        flex: 1 0 rem(100px);
+        min-width: rem(100px);
+        max-width: rem(100px);
+      }
+
+      @include breakpoint('tablet') {
+        display: none;
+        align-items: center;
+        float: left;
+        width: 100px;
+        text-align: center;
+      }
+    }
+
+    .segment-activated{
+      color: rgba(0,0,0,1);
+    }
+
+    @include breakpoint('tablet') {
+      ion-segment-button.segment-button:nth-child(-n+5), .more-option {
+        display: flex;
+      }
+    }
+
+    .more-option {
+      border: none;
+      font-size: rem(14px);
+      float: left;
+
+      &.inactive {
+        display: none;
+      }
+
+      @include breakpoint('mobile') {
+        display: none;
+      }
+
+      span:after {
+        content: "\f280"; // md-arrow-dropdown Icon
+        font-family: "Ionicons";
+        font-weight: normal;
+        line-height: 1;
+        margin-left: rem(5px);
+      }
+
+      ion-icon {
+        margin-left: rem(2px);
+      }
+    }
+
+    .linehelper {
+      display: block;
+      width: 100px;
+      height: rem(3px);
+      background-color: #0000cc;
+      position: absolute;
+      bottom: 0px;
+      left: 0px;
+      transition: left 0.2s ease-out;
+    }
+}
+
+ion-card.card {
+  position: relative;
+
+  span.distance {
+    position: absolute;
+    top: rem(16px);
+    left: rem(16px);
+    background-color: #000;
+    color: #fff;
+    font-size: rem(14px);
+    padding: rem(5px) rem(7px);
+    z-index: 1;
+  }
+
+  @include breakpoint('tablet') {
+    .card-title {
+      font-size: rem(20px);
+    }
+  }
+
+  .img-container {
+    background-color: #f8f8f8;
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 56%;
+
+    img {
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+    }
+  }
+
+  button {
+    float: right;
+    width: rem(28px);
+    margin: 0 0 rem(10px) rem(10px);
+  }
+
+}
+
+.long-text {
+  ul {
+    list-style-type: square;
+  }
+  ul, ol {
+    padding-left: rem(32px);
+  }
+  p, li {
+    font-size: rem(16px);
+    line-height: rem(22px);
+    color: #666;
+    margin-bottom: rem(24px);
+  }
+  a:link, a:visited {
+    color: color($colors, secondary);
+    text-decoration: underline;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+
+  h2 {
+    font-weight: 500;
+    font-size: rem(18px);
+    color: #666;
+  }
+}
+
+.info-message {
+  text-align: center;
+  display: table;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-color: #eee;
+  color: #444;
+
+  .inner {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 0 rem(50px);
+    height: 100%;
+    position: relative;
+  }
+
+  &.cookies {
+    .inner {
+      vertical-align: top;
+      padding: rem(55px) rem(50px);
+    }
+  }
+
+  ion-icon {
+    font-size: rem(44px);
+    color: #444;
+  }
+
+  h1 {
+    margin-top: rem(14px);
+    font-size: rem(20px);
+    line-height: rem(24px);
+    font-weight: 500;
+    color: #444;
+  }
+
+  p {
+    font-size: rem(16px);
+    line-height: rem(22px);
+    color: #666;
+  }
+
+  @include breakpoint('mobile') {
+    button {
+      position: absolute;
+      bottom: rem(55px);
+      left: 50%;
+      transform: translate(-50%, 0);
+
+      &.button-clear {
+        bottom: rem(120px);
+      }
+    }
+  }
+
+}
+
+// MD specific
+
+.md {
+
+  @include breakpoint('tablet') {
+    .header-md::after {
+      background: none;
+    }
+
+    page-detail:after, page-language:after, page-search:after, .info-message:before, .long-text:before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: rem(192px);
+      background-color: color($colors, primary);
+    }
+
+    .info-message {
+      background-color: #eee;
+      display: block;
+      padding-top: rem(24px);
+
+      &.noheader {
+        padding-top: rem(72px);
+      }
+
+      .inner {
+        display: block;
+        max-width: rem(738px);
+        margin: 0 auto rem(24px);
+        padding: rem(40px) rem(50px);
+        height: auto;
+        background-color: #fff;
+        border-radius: 2px;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+        overflow: hidden;
+
+        h1, p {
+          max-width: rem(480px);
+          display: block;
+          margin-right: auto;
+          margin-left: auto;
+        }
+
+        button {
+          margin-top: rem(32px);
+          float: right;
+
+          &.button-clear {
+            float: left;
+          }
+        }
+      }
+    }
+
+    .long-text {
+      background-color: #eee;
+      display: block;
+      padding-top: rem(24px);
+      overflow: hidden;
+      margin: rem(-16px);
+
+      .inner {
+        position: relative;
+        max-width: rem(738px);
+        margin: 0 auto rem(24px);
+        padding: rem(20px) rem(50px);
+        background-color: #fff;
+        border-radius: 2px;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+        overflow: hidden;
+      }
+    }
+
+  } // end tablet
+
+  .header-md {
+    .back-button-text-md {
+      display: none;
+    }
+  }
+
+  .toolbar-content {
+    background-color: color($colors, primary);
+  }
+
+  ion-segment {
+    background-color: color($colors, primary);
+
+    ion-segment-button.segment-button, .more-option {
+        font-weight: 500;
+        color: #A1B4FF;
+
+        &.segment-activated{
+            color: #fff;
+        }
+    }
+
+    .more-option {
+      font-family: "Roboto", "Helvetica Neue", sans-serif;
+      background-color: color($colors, primary);
+    }
+
+    .linehelper {
+      background-color: color($colors, secondary);
+    }
+  }
+
+  .popover-content {
+    .list-md {
+      margin: 0;
+    }
+  }
+
+  ion-menu {
+
+    .list-md {
+      border-bottom: 1px solid #dedede;
+      margin: 0;
+      padding: rem(8px) 0;
+    }
+
+    .item-md {
+
+      ion-icon {
+        font-size: rem(20px);
+        color: color($colors, secondary);
+        margin: rem(6px) 0 0;
+        width: rem(24px);
+        text-align: center;
+        vertical-align: middle;
+      }
+
+      .label-md {
+        font-weight: 400;
+
+        span {
+          color: #757575;
+        }
+      }
+    }
+
+    .list-header-md {
+      border-top: none;
+      margin-top: 0;
+      margin: 0;
+
+      .label-md {
+        font-size: rem(14px);
+        font-weight: 500;
+      }
+    }
+
+  }
+
+  ion-card.card-md {
+    margin: rem(15px);
+    width: calc(100% - 30px);
+
+    @include breakpoint('tablet') {
+      flex: 1 1 30.1%;
+      max-width: 30.1%;
+      margin: rem(15px) rem(7px) rem(7px) rem(15px);
+
+      &:nth-child(3n+0) {
+        margin-right: rem(15px);
+      }
+    }
+
+    p {
+      color: #666;
+
+      &.category {
+        text-transform: uppercase;
+      }
+    }
+
+    button {
+      span {
+        color: color($colors, secondary);
+      }
+    }
+  }
+
+  // Hovers for desktop
+
+  @include breakpoint('desktop') {
+    ion-card {
+      cursor: pointer;
+
+      &:hover {
+        .img-container {
+          opacity: 0.75;
+        }
+        ion-card-title {
+          color: color($colors, secondary);
+        }
+      }
+    }
+
+    ion-segment {
+      ion-segment-button:hover, .more-option:hover {
+        color: #ffcc00;
+      }
+    }
+
+    ion-list {
+      ion-item:hover, button:hover {
+        color: color($colors, secondary);
+      }
+    }
+
+    ion-searchbar {
+      button.searchbar-md-cancel:hover {
+        background: none;
+
+        ion-icon {
+          color: #ffcc00;
+        }
+      }
+    }
+
+    .toolbar-md {
+      button:hover {
+        .icon-md {
+          color: #ffcc00;
+        }
+      }
+    }
+
+    ion-fab {
+      button:hover {
+        background-color: #e44784;
+      }
+    }
+
+    button.button-default-md.button-md-secondary:hover {
+      background-color: #e44784;
+    }
+
+  }
+
+}
+
+
+
+
+// iOS specific
+
+/* iOS hacks */
+.ios ion-menu>.menu-inner>ion-content.statusbar-padding:first-child .scroll-content, .ios ion-menu>.menu-inner>ion-header>ion-content.statusbar-padding:first-child .scroll-content, .ios ion-nav>.ion-page>ion-content.statusbar-padding:first-child .scroll-content, .ios ion-nav>.ion-page>ion-header>ion-content.statusbar-padding:first-child .scroll-content, .ios ion-tab>.ion-page>ion-header>ion-content.statusbar-padding:first-child .scroll-content, .ios ion-tabs>.ion-page.tab-subpage>ion-header>ion-content.statusbar-padding:first-child .scroll-content {
+  padding-top: 0 !important;
+}
+
+.ios ion-menu>.menu-inner>.toolbar.statusbar-padding:first-child, .ios ion-menu>.menu-inner>ion-header>.toolbar.statusbar-padding:first-child, .ios ion-nav>.ion-page>.toolbar.statusbar-padding:first-child, .ios ion-nav>.ion-page>ion-header>.toolbar.statusbar-padding:first-child, .ios ion-tab>.ion-page>ion-header>.toolbar.statusbar-padding:first-child, .ios ion-tabs>.ion-page.tab-subpage>ion-header>.toolbar.statusbar-padding:first-child {
+  padding-top: 4px !important;
+  min-height: 44px !important;
+  height: 44px;
+}
+
+.ios ion-menu>.menu-inner>.toolbar.statusbar-padding:first-child ion-segment, .ios ion-menu>.menu-inner>.toolbar.statusbar-padding:first-child ion-title, .ios ion-menu>.menu-inner>ion-header>.toolbar.statusbar-padding:first-child ion-segment, .ios ion-menu>.menu-inner>ion-header>.toolbar.statusbar-padding:first-child ion-title, .ios ion-nav>.ion-page>.toolbar.statusbar-padding:first-child ion-segment, .ios ion-nav>.ion-page>.toolbar.statusbar-padding:first-child ion-title, .ios ion-nav>.ion-page>ion-header>.toolbar.statusbar-padding:first-child ion-segment, .ios ion-nav>.ion-page>ion-header>.toolbar.statusbar-padding:first-child ion-title, .ios ion-tab>.ion-page>ion-header>.toolbar.statusbar-padding:first-child ion-segment, .ios ion-tab>.ion-page>ion-header>.toolbar.statusbar-padding:first-child ion-title, .ios ion-tabs>.ion-page.tab-subpage>ion-header>.toolbar.statusbar-padding:first-child ion-segment, .ios ion-tabs>.ion-page.tab-subpage>ion-header>.toolbar.statusbar-padding:first-child ion-title {
+  padding-top: 0 !important;
+}
+
+ion-title.title.title-ios {
+  height: 44px !important;
+  min-height: 0 !important;
+}
+
+.ios ion-menu>.menu-inner>.toolbar.statusbar-padding:first-child, .ios ion-menu>.menu-inner>ion-header>.toolbar.statusbar-padding:first-child, .ios ion-nav>.ion-page>.toolbar.statusbar-padding:first-child, .ios ion-nav>.ion-page>ion-header>.toolbar.statusbar-padding:first-child, .ios ion-tab>.ion-page>ion-header>.toolbar.statusbar-padding:first-child, .ios ion-tabs>.ion-page.tab-subpage>ion-header>.toolbar.statusbar-padding:first-child {
+
+}
+
+body, ion-app.ios {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.ios {
+
+  .button-ios-secondary {
+    border: 1px solid color($colors, primary);
+    background: none;
+  }
+
+  .button-ios-secondary, .button-clear-ios-secondary {
+    .button-inner {
+      color: color($colors, primary);
+    }
+  }
+
+  .info-message {
+    h1 {
+      font-size: rem(18px);
+      line-height: rem(22px);
+      font-weight: 400;
+    }
+    p {
+      font-size: rem(14px);
+      line-height: rem(20px);
+    }
+  }
+
+  ion-segment-button {
+    &.segment-button {
+      line-height: 1.3em;
+      text-transform: none;
+      height: rem(45px);
+      padding: 0 rem(8px);
+      font-weight: 500;
+    }
+
+    &.segment-activated {
+      color: #000;
+    }
+  }
+  .linehelper {
+    height: rem(2px);
+  }
+
+  ion-card.card-ios {
+    margin: 0;
+    width: 100%;
+    box-shadow: none;
+    border-bottom: 1px solid #ccc;
+
+    @include breakpoint('tablet') {
+      flex: 1 1 33.33%;
+      max-width: 33.33%;
+      border-right: 1px solid #ccc;
+
+      &:nth-child(3n+0) {
+        border-right:none;
+      }
+    }
+
+    span.distance {
+      font-size: rem(12px);
+      padding: rem(3px) rem(5px);
+    }
+
+    .card-content-ios {
+      padding-top: rem(6px);
+
+      p.category {
+        text-transform: uppercase;
+        font-size: rem(12px);
+      }
+
+      button {
+        span {
+          color: color($colors, primary);
+
+          ion-icon {
+            /* iOS hacks */
+            padding: 0;
+          }
+        }
+      }
+    }
+
+  }
+
+  .long-text {
+    ul {
+      list-style-type: square;
+    }
+    ul, ol {
+      padding-left: rem(28px);
+    }
+    p, li {
+      font-size: rem(14px);
+      line-height: rem(20px);
+      margin-bottom: rem(20px);
+    }
+    a:link, a:visited {
+      color: color($colors, primary);
+    }
+
+    h2 {
+      font-weight: 500;
+      font-size: rem(16px);
+    }
+  }
+
+  .menu-content-reveal {
+    box-shadow: 0 0 rem(10px) rgba(0, 0, 0, 1);
+  }
+
+  ion-menu {
+
+    .content-ios.outer-content {
+      background: none;
+    }
+
+    .menu-inner {
+      background-color: #333;
+    }
+
+    .list-ios {
+      border-bottom: 1px solid #666;
+      margin: 0;
+      padding: rem(8px) 0;
+    }
+
+    .item-ios {
+      background: none;
+      color: #fff;
+      font-size: rem(16px);
+
+      ion-icon {
+        font-size: rem(20px);
+        color: #999;
+        margin: rem(6px) rem(12px) 0 0;
+        width: rem(24px);
+        text-align: center;
+        vertical-align: middle;
+      }
+
+      .label-ios {
+        font-weight: 400;
+
+        span {
+          color: #999;
+        }
+      }
+    }
+
+    .list-header-ios {
+      border-top: none;
+      margin-top: 0;
+      margin: 0;
+
+      .label-ios {
+        font-size: rem(12px);
+        font-weight: 400;
+        color: #999;
+      }
+    }
+
+  }
+
+  @include breakpoint('mobile') {
+    .long-text {
+      background-color: #fff;
+
+      .inner {
+        padding: rem(16px);
+      }
+    }
+  }
+
+  @include breakpoint('tablet') {
+
+    .popover-content {
+      .list-ios {
+        margin-bottom: 8px;
+
+        .item-ios {
+          &:last-child {
+            border-bottom: none;
+          }
+
+          .input-wrapper {
+            font-size: rem(16px);
+          }
+        }
+      }
+    }
+
+    ion-segment {
+      .more-option {
+        font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+        font-size: rem(12px);
+        line-height: rem(15.6px);
+        background: none;
+        color: rgba(0, 0, 0, 0.54);
+        text-transform: none;
+        height: rem(45px);
+        padding: 0 rem(8px);
+
+        &.segment-activated{
+          color: #000;
+        }
+      }
+    }
+
+    .info-message {
+      background-color: #fff;
+
+      .inner {
+        display: block;
+        max-width: rem(520px);
+        margin: rem(24px) auto;
+        height: auto;
+        overflow: hidden;
+
+        h1 {
+          font-size: rem(20px);
+          line-height: rem(24px);
+        }
+
+      }
+    }
+
+    .long-text {
+      background-color: #f8f8f8;
+
+      .inner {
+        background-color: #fff;
+        display: block;
+        max-width: rem(520px);
+        padding: rem(16px) rem(24px);
+        margin: 0 auto;
+        overflow: hidden;
+      }
+    }
+
+  } // end tablet
+
+}

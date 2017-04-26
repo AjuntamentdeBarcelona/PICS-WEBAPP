@@ -1,0 +1,49 @@
+.md {
+  page-home, page-favorites, page-district {
+
+    .tablet-inner {
+      overflow: hidden;
+
+      @include breakpoint('tablet') {
+        max-width: rem(1024px);
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+      }
+    }
+
+  }
+}
+
+.ios {
+  page-home, page-favorites, page-district {
+
+    .tablet-inner {
+      overflow: hidden;
+
+      @include breakpoint('tablet') {
+        display: flex;
+        flex-wrap: wrap;
+      }
+    }
+
+  }
+
+  .toast-container {
+    position: relative;
+
+    &:before {
+      font-family: "Ionicons";
+      content: "\f210";
+      font-size: rem(28px);
+      color: #fff;
+      position: absolute;
+      top: rem(15px);
+      left: rem(15px);
+    }
+
+    .toast-message {
+      padding-left: rem(45px);
+    }
+  }
+}

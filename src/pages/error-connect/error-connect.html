@@ -1,0 +1,25 @@
+<ion-header>
+
+  <ion-navbar color="{{navbarColor}}">
+    <button ion-button icon-only menuToggle>
+      <ion-icon name="menu" ios="ios-menu-outline"></ion-icon>
+    </button>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <div class="info-message">
+    <div class="inner">
+      <ion-icon name="icon-pic_connection"></ion-icon>
+      <h1>{{ 'No connection' | translate }}</h1>
+      <p>{{ 'While offline you can check your favorite points of interest' | translate }}</p>
+      <button ion-button color="secondary" (click)="goToFavorites()">
+        {{ 'Go to Favorites' | translate }}
+      </button>
+    </div>
+  </div>
+
+</ion-content>

@@ -1,0 +1,71 @@
+<ion-header>
+
+  <ion-navbar color="{{navbarColor}}">
+    <button ion-button icon-only menuToggle>
+      <ion-icon name="menu" ios="ios-menu-outline"></ion-icon>
+    </button>
+
+    <ion-title>{{ districtName }}</ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="showSearch()">
+        <ion-icon name="search" ios="ios-search-outline"></ion-icon>
+      </button>
+      <button ion-button icon-only (click)="changeView()">
+        <ion-icon name="map" ios="ios-map-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+ <ion-toolbar class="nopadding">
+
+   <ion-segment #scrollingTabs [(ngModel)]="category" color="primary" (ionChange)="tabSelect()" mode="mode">
+     <ion-segment-button *ngFor="let categoryItem of categories" value="{{categoryItem.id}}">
+       <span>{{categoryItem.name}}</span>
+     </ion-segment-button>
+     <button #moreOption class="more-option" (click)="openDesktopMoreCategories($event)" [ngClass]="{inactive: categoriesDesktopMore.length == 0}">
+       <span #moreOptionLabel>{{ 'More' | translate }}</span>
+     </button>
+     <div #scrollingTabsLine class="linehelper"></div>
+   </ion-segment>
+
+ </ion-toolbar>
+
+</ion-header>
+
+<ion-content class="columns">
+
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
+    <div class="tablet-inner">
+
+      <ion-card *ngFor="let poi of pois" (click)="goToDetail(poi.id)">
+        <span class="distance" *ngIf="(poi.distance) && (poi.distance != '')">{{poi.distance}} km</span>
+        <div class="img-container">
+          <img class="placeholder" src="assets/img-placeholder.png" alt="">
+          <img src="{{poi.image_url}}" alt="" *ngIf="(poi.image_url) && (poi.image_url != '')">
+        </div>
+        <ion-card-content>
+
+          <button class="favButton" ion-button icon-only [clear]="true" (click)="addFavorite($event, poi.id)" *ngIf="poi.isFavorite == false">
+            <ion-icon name="star-outline"></ion-icon>
+          </button>
+          <button class="favButton" ion-button icon-only [clear]="true" (click)="removeFavorite($event, poi.id)" *ngIf="poi.isFavorite == true">
+            <ion-icon name="star"></ion-icon>
+          </button>
+
+          <ion-card-title>{{poi.title}}</ion-card-title>
+          <p class="category" [innerHTML]="getCategoryLabel(poi.category_id)" *ngIf="category == '0'"></p>
+          <p>{{poi.excerpt}}</p>
+        </ion-card-content>
+      </ion-card>
+
+    </div>
+
+    <ion-infinite-scroll *ngIf="activeInfiniteScroll==true" (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
+</ion-content>

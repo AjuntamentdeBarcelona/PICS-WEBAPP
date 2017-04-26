@@ -1,0 +1,57 @@
+<ion-header>
+
+  <ion-navbar color="{{navbarColor}}">
+    <button ion-button icon-only menuToggle>
+      <ion-icon name="menu" ios="ios-menu-outline"></ion-icon>
+    </button>
+
+    <ion-title>{{ 'Home' | translate }}</ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="showSearch()">
+        <ion-icon name="search" ios="ios-search-outline"></ion-icon>
+      </button>
+      <button ion-button icon-only (click)="changeView()">
+        <ion-icon name="icon-pic_md_list" ios="ios-list-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+  <ion-toolbar class="nopadding">
+
+    <ion-segment #scrollingTabs [(ngModel)]="category" color="primary" (ionChange)="tabSelect()" mode="mode">
+      <ion-segment-button *ngFor="let categoryItem of categories" value="{{categoryItem.id}}">
+        <span>{{categoryItem.name}}</span>
+      </ion-segment-button>
+      <button #moreOption class="more-option" (click)="openDesktopMoreCategories($event)" [ngClass]="{inactive: categoriesDesktopMore.length == 0}">
+        <span #moreOptionLabel>{{ 'More' | translate }}</span>
+      </button>
+      <div #scrollingTabsLine class="linehelper"></div>
+    </ion-segment>
+
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content class="map-page">
+
+  <ion-fab>
+    <button class="centerMapButton" [ngClass]="{up: activeInfowindow == true}" ion-fab color="secondary" (click)="centerMapOnUser()"><ion-icon name="locate" ios="icon-pic_ios_locate"></ion-icon></button>
+  </ion-fab>
+
+  <ion-card #infowindowCard class="infowindow" *ngIf="activeInfowindow==true" (click)="goToDetail(infowindow.id)">
+    <div class="img-container" *ngIf="(infowindow.image_url) && (infowindow.image_url != '')">
+      <img src="{{infowindow.image_url}}">
+    </div>
+    <ion-card-content>
+      <ion-card-title>{{infowindow.title}}</ion-card-title>
+      <p class="category" [innerHTML]="getCategoryLabel(infowindow.category_id)" *ngIf="category == '0'"></p>
+      <p class="excerpt">{{infowindow.excerpt}}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <div style="width: 100%; height: 100%;" id="map"></div>
+
+</ion-content>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />

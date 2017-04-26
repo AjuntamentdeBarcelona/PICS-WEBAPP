@@ -1,0 +1,40 @@
+<ion-menu [content]="content">
+  <ion-content class="outer-content">
+    <img src="assets/menu/menu_logo.png" alt="Punts d'interès de ciutat">
+
+    <ion-list no-lines>
+      <ion-item menuClose (click)="openPage('HomePage')">
+        <ion-icon item-left name="home"></ion-icon>
+        {{ 'Home' | translate }}
+      </ion-item>
+      <ion-item menuClose (click)="openPage('FavoritesPage')">
+        <ion-icon item-left name="star"></ion-icon>
+        {{ 'Favorites' | translate }}
+      </ion-item>
+    </ion-list>
+
+    <ion-list no-lines>
+      <ion-list-header>
+        {{ 'Districts' | translate }}
+      </ion-list-header>
+      <ion-item menuClose *ngFor="let p of appMenuDistricts" (click)="openDistrict(p.component, p.parameter)">
+        {{p.title}}
+      </ion-item>
+    </ion-list>
+
+    <ion-list no-lines>
+      <ion-item menuClose (click)="openPopup('LanguagePage')">
+        {{ 'Language' | translate }} <span>&#8213; {{ 'currentLang' | translate }}</span>
+      </ion-item>
+      <ion-item menuClose (click)="openPopup('LegalPage','terms')">
+        {{ 'Terms and conditions' | translate }}
+      </ion-item>
+      <ion-item menuClose (click)="openPopup('LegalPage','cookies')">
+        {{ 'Cookies information' | translate }}
+      </ion-item>
+    </ion-list>
+
+  </ion-content>
+</ion-menu>
+
+<ion-nav #content [root]="rootPage" swipeBackEnabled="false"></ion-nav>

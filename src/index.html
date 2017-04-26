@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ca" dir="ltr" manifest="cache.manifest">
+<head>
+  <meta charset="UTF-8">
+
+  <title>Punts d'interès de ciutat - Barcelona</title>
+
+  <meta name="robots" content="noindex">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="msapplication-tap-highlight" content="no">
+
+  <link rel="icon" type="image/x-icon" href="assets/icon/favicon.ico">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#3e50b4">
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="PICS">
+  <link rel="apple-touch-startup-image" href="assets/splash/splash-640.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="assets/icon/icon-60x60-ios.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="assets/icon/icon-152x152-ios.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/icon/icon-180x180-ios.png">
+  <link rel="apple-touch-icon" sizes="167x167" href="assets/icon/icon-167x167-ios.png">
+  <link rel="mask-icon" href="assets/icon/safari-pinned-tab.svg" color="#3d50b4">
+
+  <link rel="dns-prefetch" href="//www.google-analytics.com">
+  <link rel="dns-prefetch" href="//unpkg.com">
+  <link rel="dns-prefetch" href="//a.tile.openstreetmap.se">
+  <link rel="dns-prefetch" href="//b.tile.openstreetmap.se">
+  <link rel="dns-prefetch" href="//c.tile.openstreetmap.se">
+
+  <meta name="description" content="Descobreix la ciutat i els seus barris amb aquesta nova aplicació web que mostra els principals punts d'interès de Barcelona">
+	<meta property="og:title" content="Punts d'interès de ciutat">
+	<meta property="og:url" content="https://webapp.barcelona.cat/pics/">
+	<meta property="og:description" content="Descobreix la ciutat i els seus barris amb aquesta nova aplicació web que mostra els principals punts d'interès de Barcelona">
+	<meta property="og:image" content="https://webapp.barcelona.cat/pics/assets/logo-social.jpg">
+	<meta name="twitter:title" content="Punts d'interès de ciutat">
+	<meta name="twitter:url" content="https://webapp.barcelona.cat/pics/">
+	<meta name="twitter:description" content="Descobreix la ciutat i els seus barris amb aquesta nova aplicació web que mostra els principals punts d'interès de Barcelona">
+	<meta name="twitter:image" content="https://webapp.barcelona.cat/pics/assets/logo-social.jpg">
+
+  <!-- cordova.js required for cordova apps -->
+  <script src="cordova.js"></script>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(() => console.log('Service worker installed'))
+        .catch(err => console.log('Error', err));
+    }
+  </script>
+
+  <link href="build/main.css" rel="stylesheet">
+
+</head>
+<body>
+
+  <!-- Ionic's root component and where the app will load -->
+  <ion-app></ion-app>
+
+  <!-- The polyfills js is generated during the build process -->
+  <script src="build/polyfills.js"></script>
+
+  <!-- The bundle js is generated during the build process -->
+  <script src="build/main.js"></script>
+
+</body>
+</html>

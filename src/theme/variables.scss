@@ -1,0 +1,170 @@
+// Ionic Variables and Theming. For more info, please see:
+// http://ionicframework.com/docs/v2/theming/
+$font-path: "../assets/fonts";
+
+@import "ionic.globals";
+
+
+// Shared Variables
+// --------------------------------------------------
+// To customize the look and feel of this app, you can override
+// the Sass variables found in Ionic's source scss files.
+// To view all the possible Ionic variables, see:
+// http://ionicframework.com/docs/v2/theming/overriding-ionic-variables/
+
+
+
+
+// Named Color Variables
+// --------------------------------------------------
+// Named colors makes it easy to reuse colors on various components.
+// It's highly recommended to change the default colors
+// to match your app's branding. Ionic uses a Sass map of
+// colors so you can add, rename and remove colors as needed.
+// The "primary" color is the only required color in the map.
+
+$colors: (
+  primary:    #3E50B4,
+  secondary:  #DB0A5B,
+  danger:     #f53d3d, //no official
+  light:      #f4f4f4,
+  dark:       #222
+);
+
+$categoriesColors: (
+  cat1:       #B500B5, // Estudi i recerca
+  cat2:       #008000, // Espais naturals
+  cat3:       #005555, // Espais urbans
+  cat4:       #D43900, // Museus
+  cat5:       #1460AA, // Oci i lleure
+  cat6:       #9B59B6, // Patrimoni cultural
+  cat7:       #DB0A5B, // Per fer compres
+  cat8:       #9F6B3F, // Per fer esport
+  cat9:       #871A1A, // Per fer negocis
+  cat10:       #007A7C // Transports singulars
+);
+
+@each $category, $color in $categoriesColors {
+    .#{$category} {
+      color: #{$color};
+    }
+}
+
+
+// App iOS Variables
+// --------------------------------------------------
+// iOS only Sass variables can go here
+
+
+
+
+// App Material Design Variables
+// --------------------------------------------------
+// Material Design only Sass variables can go here
+
+
+
+
+// App Windows Variables
+// --------------------------------------------------
+// Windows only Sass variables can go here
+
+
+
+
+// App Theme
+// --------------------------------------------------
+// Ionic apps can have different themes applied, which can
+// then be future customized. This import comes last
+// so that the above variables are used and Ionic's
+// default are overridden.
+
+@import "ionic.theme.default";
+
+
+// Ionicons
+// --------------------------------------------------
+// The premium icon font for Ionic. For more info, please see:
+// http://ionicframework.com/docs/v2/ionicons/
+
+@import "ionic.ionicons";
+
+
+// Fonts
+// --------------------------------------------------
+
+@import "roboto";
+@import "noto-sans";
+
+
+// PIC app designed icons
+
+@font-face {
+  font-family: 'PICfont';
+  font-style: normal;
+  font-weight: normal;
+  src: url('../assets/fonts/picfont.woff2?12042634') format('woff2'),
+       url('../assets/fonts/picfont.woff?12042634') format('woff'),
+       url('../assets/fonts/picfont.ttf?12042634') format('truetype');
+}
+
+[class^="icon-pic"],
+[class*=" icon-pic"],
+[class^="ion-icon-pic"],
+[class*=" ion-icon-pic"],
+[class^="ion-ios-icon-pic"],
+[class*="ion-ios-icon-pic"],
+[class^="ion-md-icon-pic"],
+[class*="ion-md-icon-pic"]{
+  /* @extend .ion; */
+  font-family: "PICfont";
+  speak: none;
+  font-weight: normal;
+  /* copied from .ion: */
+  -moz-osx-font-smoothing: grayscale;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-rendering: auto;
+  text-transform: none;
+}
+
+@mixin makeIcon($arg, $val) {
+ .ion-#{$arg}:before ,
+ .ion-ios-#{$arg}:before ,
+ .ion-ios-#{$arg}-circle:before ,
+ .ion-ios-#{$arg}-circle-outline:before ,
+ .ion-ios-#{$arg}-outline:before ,
+ .ion-md-#{$arg}:before ,
+ .ion-md-#{$arg}-circle:before ,
+ .ion-md-#{$arg}-circle-outline:before ,
+ .ion-md-#{$arg}-outline:before  {
+   content: $val;
+ }
+}
+
+@include makeIcon(icon-pic_connection, '\e800')
+@include makeIcon(icon-pic_directions, '\e801')
+@include makeIcon(icon-pic_error, '\e802')
+@include makeIcon(icon-pic_info, '\e804')
+@include makeIcon(icon-pic_ios_locate, '\e805')
+@include makeIcon(icon-pic_md_list, '\e806')
+@include makeIcon(icon-pic_pin, '\e807')
+@include makeIcon(icon-pic_web, '\e808')
+@include makeIcon(icon-pic_history, '\e809')
+
+
+// Breakpoints mixin
+
+@mixin breakpoint($point) {
+  @if $point == 'desktop' {
+    @media (min-width: 1024px) { @content; }
+  }
+  @else if $point == 'tablet' {
+    @media (min-width: 768px) { @content; }
+  }
+  @else if $point == 'mobile' {
+    @media (max-width: 767px) { @content; }
+  }
+}

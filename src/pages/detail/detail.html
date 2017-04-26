@@ -1,0 +1,149 @@
+<ion-header>
+
+  <ion-navbar color="{{navbarColor}}">
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="showSharingOptions()">
+        <ion-icon name="share" ios="ios-share-outline"></ion-icon>
+      </button>
+      <button ion-button icon-only (click)="addFavorite()" *ngIf="isFavorite == false">
+        <ion-icon name="star-outline"></ion-icon>
+      </button>
+      <button ion-button icon-only (click)="removeFavorite()" *ngIf="isFavorite == true">
+        <ion-icon name="star"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="detail-page">
+
+  <ion-fab>
+    <button class="go-up-button" [ngClass]="{show: relatedVisible == true}" ion-fab color="secondary" (click)="goScrollUp()"><ion-icon name="arrow-up" ios="ios-arrow-round-up-outline"></ion-icon></button>
+  </ion-fab>
+
+  <div class="tablet-inner">
+
+    <div class="image" *ngIf="poi.imagecount > 0">
+
+      <img class="placeholder" src="assets/img-placeholder.png" alt="">
+      <img class="singleImage" src="{{poi.images[0].image_url}}" *ngIf="poi.imagecount == 1">
+
+      <div class="swiper-group" *ngIf="poi.imagecount > 1">
+
+        <ion-slides #sliderElem pager="true" paginationType="fraction" nextButton="button-next" prevButton="button-prev">
+          <ion-slide *ngFor="let img of poi.images">
+            <img src="{{img.image_url}}">
+          </ion-slide>
+        </ion-slides>
+
+        <button ion-button class="button-prev" outline (click)="sliderElem.slidePrev()" [ngClass]="{disabled: sliderElem.isBeginning()}">
+          <ion-icon name="ios-arrow-back"></ion-icon>
+        </button>
+
+        <button ion-button class="button-next" outline (click)="sliderElem.slideNext()" [ngClass]="{disabled: sliderElem.isEnd()}">
+          <ion-icon name="ios-arrow-forward"></ion-icon>
+        </button>
+
+      </div>
+
+    </div>
+
+    <div class="poiContent">
+
+      <h1>{{poi.title}}</h1>
+      <p class="category" [innerHTML]="poi.categoryLabel"></p>
+      <p>{{poi.excerpt}}</p>
+
+      <div class="actions">
+
+        <a (click)="call(poi.phone)" *ngIf="(poi.phone) && (poi.phone != '')">
+          <ion-icon name="call" ios="ios-call-outline"></ion-icon>
+          <span>{{ 'Call' | translate }}</span>
+        </a>
+
+        <a href="{{poi.urlNavigate}}" target="{{targetAttr}}" (click)="trackNavigate()" *ngIf="(poi.lon) && (poi.lon != '') && (poi.lat) && (poi.lat != '')">
+          <ion-icon name="icon-pic_directions" ios="ios-pin-outline"></ion-icon>
+          <span>{{ 'Directions' | translate }}</span>
+        </a>
+
+        <a href="{{poi.web}}" target="{{targetAttr}}" (click)="trackWeb()" *ngIf="(poi.web) && (poi.web != '')">
+          <ion-icon name="icon-pic_web" ios="ios-link-outline"></ion-icon>
+          <span>{{ 'Web' | translate }}</span>
+        </a>
+
+      </div>
+
+      <div class="accordion" *ngIf="(poi.content) && (poi.content != '')">
+        <button (click)="showContent = !showContent">
+          {{ 'Description' | translate }}
+          <ion-icon name="ios-arrow-down" *ngIf="!showContent"></ion-icon>
+          <ion-icon name="ios-arrow-up" *ngIf="showContent"></ion-icon>
+        </button>
+        <div class="inner" [innerHTML]="poi.content" *ngIf="showContent"></div>
+      </div>
+
+      <div class="datalist">
+        <p *ngIf="(poi.address) && (poi.address != '')">
+          <a href="{{poi.urlNavigate}}" target="{{targetAttr}}" (click)="trackNavigate()">
+            <ion-icon name="icon-pic_pin" ios="ios-pin-outline"></ion-icon>
+            {{poi.address}}
+            <span *ngIf="(poi.distance) && (poi.distance != '')" class="distance">{{poi.distance}} km</span>
+          </a>
+        </p>
+        <p *ngIf="(poi.phone) && (poi.phone != '')">
+          <a (click)="call(poi.phone)">
+            <ion-icon name="call" ios="ios-call-outline"></ion-icon>
+            {{poi.phone}}
+          </a>
+        </p>
+        <p *ngIf="(poi.email) && (poi.email != '')">
+          <a (click)="sendEmail(poi.email)">
+            <ion-icon name="mail" ios="ios-mail-outline"></ion-icon>
+            {{poi.email}}
+          </a>
+        </p>
+        <p *ngIf="(poi.web) && (poi.web != '')">
+          <a href="{{poi.web}}" target="{{targetAttr}}" (click)="trackWeb()">
+            <ion-icon name="icon-pic_web" ios="ios-link-outline"></ion-icon>
+            {{ 'Web' | translate }}
+          </a>
+        </p>
+      </div>
+
+    </div>
+
+    <div id="related-helper">
+      <div class="related" *ngIf="showRelated">
+
+        <h3>{{ 'You may also like' | translate }}</h3>
+
+        <ion-card *ngFor="let poi of relatedPois" (click)="goToDetail(poi.id)">
+          <span class="distance" *ngIf="(poi.distance) && (poi.distance != '')">{{poi.distance}} km</span>
+          <div class="img-container">
+            <img class="placeholder" src="assets/img-placeholder.png" alt="">
+            <img src="{{poi.image_url}}" alt="" *ngIf="(poi.image_url) && (poi.image_url != '')">
+          </div>
+          <ion-card-content>
+
+            <button class="favButton" ion-button icon-only [clear]="true" (click)="addFavoriteRelated($event, poi.id)" *ngIf="poi.isFavorite == false">
+              <ion-icon name="star-outline"></ion-icon>
+            </button>
+            <button class="favButton" ion-button icon-only [clear]="true" (click)="removeFavoriteRelated($event, poi.id)" *ngIf="poi.isFavorite == true">
+              <ion-icon name="star"></ion-icon>
+            </button>
+
+            <ion-card-title>{{poi.title}}</ion-card-title>
+            <p class="category" [innerHTML]="getCategoryLabel(poi.category_id)"></p>
+            <p>{{poi.excerpt}}</p>
+          </ion-card-content>
+        </ion-card>
+
+      </div>
+    </div>
+
+  </div>
+
+</ion-content>
