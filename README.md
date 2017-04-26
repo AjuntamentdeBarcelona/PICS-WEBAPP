@@ -3,6 +3,8 @@
 
 This is the frontend of the webapp 'Punts d'interès de ciutat' (City's Points of Interest) initially developed by [Metodian](https://metodian.com/) for [Ajuntament de Barcelona](http://www.barcelona.cat/) (Barcelona City Council). It is created with [Ionic 2](http://ionicframework.com/), a framework working on top of AngularJS. The directory structure is the Ionic standard, dividing page files (each page in a folder with SCSS, TS and HTML template files) and provider files.
 
+You can see the webapp in action at [https://webapp.barcelona.cat/pics/](https://webapp.barcelona.cat/pics/).
+
 ### Development environment setup ###
 
 1. Install latest version of [Node.js](https://nodejs.org/)
