@@ -95,7 +95,8 @@ export class PicApp {
 
         let userLang: any = value; // Set previously saved language
         if(!userLang) userLang = window.navigator.language.split('-')[0]; // Set language depending on browser's locale
-        if(!userLang) userLang = this.globalVars.getVar('acceptedLangs')[0]; // Set first language available in app
+        if(!userLang || (this.globalVars.getVar('acceptedLangs').lastIndexOf(userLang) == -1)) userLang = this.globalVars.getVar('acceptedLangs')[0]; // Set first language available in app
+
         this.globalVars.setUserLanguage(userLang);
         this.platform.setLang(userLang, true);
         translate.setDefaultLang(userLang);

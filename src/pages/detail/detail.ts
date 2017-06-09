@@ -64,7 +64,7 @@ export class DetailPage {
         this.globalVars.getUserLanguage().then((value) => {
           this.ionCurrentLang = value; // Set previously saved language
           if(!this.ionCurrentLang) this.ionCurrentLang = window.navigator.language.split('-')[0]; // Set language depending on browser's locale
-          if(!this.ionCurrentLang) this.ionCurrentLang = this.globalVars.getVar('acceptedLangs')[0]; // Set first
+          if(!this.ionCurrentLang || (this.globalVars.getVar('acceptedLangs').lastIndexOf(this.ionCurrentLang) == -1)) this.ionCurrentLang = this.globalVars.getVar('acceptedLangs')[0]; // Set first language available in app
 
           this.init();
         });
